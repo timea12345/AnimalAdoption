@@ -1,15 +1,26 @@
 package com.sda.animal_adoption.model;
 
 //java sql date - is more specific
+import javax.persistence.*;
 import java.util.Date;
 
+@Entity
 public class Adoption {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private User user;
-    private Animal animal;
+    @Column
     private Date date;
+    @Column
     private String description;
+    @ManyToOne
+    @JoinColumn(name="id_user")
+    private User user;
+    @ManyToOne
+    @JoinColumn(name="id_animal")
+    private Animal animal;
+
 
     public Integer getId() {
         return id;

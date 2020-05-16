@@ -20,6 +20,7 @@ public class UserController {
     }
 
     @GetMapping("/findAll")
+    @CrossOrigin("*")
     public List<User> findAll() {
         return userService.findAll();
     }

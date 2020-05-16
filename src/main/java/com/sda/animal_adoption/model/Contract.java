@@ -1,13 +1,21 @@
 package com.sda.animal_adoption.model;
 
+import javax.persistence.*;
 import java.util.Date;
 
+@Entity
 public class Contract {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private Adoption adoption;
+    @Column
     private Date date;
+    @Column
     private String comments;
+    @OneToOne
+    @JoinColumn(name="id_adoption", referencedColumnName = "id")
+    private Adoption adoption;
 
     public Integer getId() {
         return id;

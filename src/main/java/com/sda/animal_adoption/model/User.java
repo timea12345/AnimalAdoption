@@ -1,13 +1,26 @@
 package com.sda.animal_adoption.model;
 
+import javax.persistence.*;
+
+@Entity
 public class User {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private Shelter shelter;
+    @Column
     private String name;
+    @Column
     private String phone;
+    @Column
     private String email;
+    @Column
     private String address;
+    @Column
     private String userType;
+    @ManyToOne
+    @JoinColumn(name="id_shelter")
+    private Shelter shelter;
 
     public Integer getId() {
         return id;
