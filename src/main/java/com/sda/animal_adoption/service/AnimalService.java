@@ -1,6 +1,7 @@
 package com.sda.animal_adoption.service;
 
 import com.sda.animal_adoption.dao.AnimalDao;
+import com.sda.animal_adoption.dao.AnimalRepository;
 import com.sda.animal_adoption.model.Animal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,26 +10,26 @@ import java.util.List;
 @Service
 public class AnimalService {
 
-    private AnimalDao animalDao;
+    private AnimalRepository animalRepository;
 
     @Autowired
-    public AnimalService(AnimalDao animalDao) {
-        this.animalDao = animalDao;
+    public AnimalService(AnimalRepository animalRepository) {
+        this.animalRepository = animalRepository;
     }
 
     public void saveAnimal(Animal animal) {
-        animalDao.save(animal);
+        animalRepository.save(animal);
     }
 
     public void delete(Integer id) {
-        animalDao.delete(id);
+        animalRepository.delete(findById(id));
     }
 
     public List<Animal> findAll() {
-        return animalDao.findAll();
+        return animalRepository.findAll();
     }
 
     public Animal findById(Integer id) {
-        return animalDao.findAnimal(id);
+        return animalRepository.findById(id).orElseThrow(() ->new NullPointerException("animal not found"));
     }
 }
