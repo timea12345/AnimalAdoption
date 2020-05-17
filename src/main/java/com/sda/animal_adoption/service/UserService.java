@@ -1,8 +1,10 @@
 package com.sda.animal_adoption.service;
 
-import com.sda.animal_adoption.dao.user.UserDao;
+import com.sda.animal_adoption.dao.user.UserDaoFake;
+import com.sda.animal_adoption.dao.user.UserInterface;
 import com.sda.animal_adoption.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -15,23 +17,23 @@ public class UserService {
 
     // private UserRepository userRepository;
 
-    private UserDao userDao;
+    private UserInterface userInterface;
 
     @Autowired
-    public UserService(UserDao userDao) {
-        this.userDao = userDao;
+    public UserService(@Qualifier("userRepositoryImp") UserInterface userInterface) {
+        this.userInterface = userInterface;
     }
 
     public List<User> findAll() {
-        return userDao.findAll();
+        return userInterface.findAll();
     }
 
     public void saveU(User user) {
-        userDao.save(user);
+        userInterface.save(user);
     }
 
     public List<User> findAllWithGivenInitial(String initial) {
-        List<User> users = userDao.findAll();
+        List<User> users = userInterface.findAll();
         List<User> usersResult = new ArrayList<>();
         for (User user : users) {
             if (user.getName().startsWith(initial)) {
@@ -41,8 +43,12 @@ public class UserService {
         return usersResult;
     }
 
+    public User findById(Integer id) {
+        return userInterface.findById(id);
+    }
+
     public void delete(Integer id) {
-        userDao.delete(id);
+        userInterface.delete(id);
     }
 
 

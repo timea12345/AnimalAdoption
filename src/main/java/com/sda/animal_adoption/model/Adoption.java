@@ -1,6 +1,8 @@
 package com.sda.animal_adoption.model;
 
 //java sql date - is more specific
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -14,10 +16,12 @@ public class Adoption {
     private Date date;
     @Column
     private String description;
-    @ManyToOne
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="id_user")
     private User user;
-    @ManyToOne
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="id_animal")
     private Animal animal;
 

@@ -1,5 +1,7 @@
 package com.sda.animal_adoption.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -13,10 +15,10 @@ public class Meeting {
     private Date date;
     @Column
     private String details;
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="id_user", referencedColumnName = "id")
     private User user;
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="id_animal", referencedColumnName = "id")
     private Animal animal;
 

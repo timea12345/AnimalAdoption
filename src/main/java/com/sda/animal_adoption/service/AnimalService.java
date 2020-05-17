@@ -4,7 +4,6 @@ import com.sda.animal_adoption.dao.AnimalDao;
 import com.sda.animal_adoption.model.Animal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service
@@ -27,5 +26,9 @@ public class AnimalService {
 
     public List<Animal> findAll() {
         return animalDao.findAll();
+    }
+
+    public Animal findById(Integer id) {
+        return animalDao.findAnimal(id);
     }
 }

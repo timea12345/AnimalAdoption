@@ -1,5 +1,7 @@
 package com.sda.animal_adoption.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -13,7 +15,8 @@ public class Contract {
     private Date date;
     @Column
     private String comments;
-    @OneToOne
+    @JsonIgnore
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="id_adoption", referencedColumnName = "id")
     private Adoption adoption;
 

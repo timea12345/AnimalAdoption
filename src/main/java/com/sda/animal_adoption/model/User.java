@@ -1,5 +1,7 @@
 package com.sda.animal_adoption.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -18,7 +20,8 @@ public class User {
     private String address;
     @Column
     private String userType;
-    @ManyToOne
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="id_shelter")
     private Shelter shelter;
 

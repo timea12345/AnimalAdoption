@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Controller
+@RestController
 public class AnimalController {
 
     private AnimalService animalService;
@@ -20,7 +20,6 @@ public class AnimalController {
     }
 
     @GetMapping("/sayHi/{hi}")
-    @ResponseBody
     public String sayHi(@PathVariable String hi) {
         return "prefix_" + hi;
     }
