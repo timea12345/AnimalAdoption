@@ -1,7 +1,5 @@
 package com.sda.animal_adoption.dao.user;
-
 import com.sda.animal_adoption.model.User;
-
 import java.util.List;
 
 public interface UserInterface {
@@ -10,6 +8,7 @@ public interface UserInterface {
     User findById(Integer id);
     List<User> findAll();
     void delete(Integer id);
+    void update(Integer id, User newUser);
 
 
 

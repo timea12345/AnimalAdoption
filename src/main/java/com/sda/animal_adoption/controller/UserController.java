@@ -4,13 +4,10 @@ import com.sda.animal_adoption.model.User;
 import com.sda.animal_adoption.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
 public class UserController {
-
-//    private UserService userService = new UserService();
 
     private UserService userService;
 
@@ -26,11 +23,13 @@ public class UserController {
     }
 
     @PostMapping("/save")
+    @CrossOrigin("*")
     public void saveUser(@RequestBody User user) {
         userService.saveU(user);
     }
 
     @DeleteMapping("/delete/{id}")
+    @CrossOrigin("*")
     public void deleteUser(@PathVariable Integer id) {
         userService.delete(id);
     }

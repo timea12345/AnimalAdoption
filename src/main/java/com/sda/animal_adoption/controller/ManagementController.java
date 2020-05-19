@@ -1,22 +1,25 @@
 package com.sda.animal_adoption.controller;
 
-import com.sda.animal_adoption.service.Population;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.sda.animal_adoption.dao.DatabasePopulation;
+import com.sda.animal_adoption.model.Animal;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequestMapping("/management")
 public class ManagementController {
 
-    private Population population;
+    private DatabasePopulation databasePopulation;
 
-    public ManagementController(Population population) {
-        this.population = population;
+    @Autowired
+    public ManagementController(DatabasePopulation databasePopulation) {
+        this.databasePopulation = databasePopulation;
     }
 
-    @PostMapping("/saveData")
-    public void saveData() {
-        population.saveData();
+    @PostMapping("/save")
+    @CrossOrigin("*")
+    public void saveData(Animal animal) {
+        databasePopulation.populateAnimal(animal);
     }
 
 }

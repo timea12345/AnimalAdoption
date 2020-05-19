@@ -1,7 +1,6 @@
 package com.sda.animal_adoption.dao.user;
 
 import com.sda.animal_adoption.model.User;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -12,25 +11,6 @@ import java.util.List;
 public class UserDaoFake implements UserInterface{
 
     List<User> users = new ArrayList<>();
-
-    {
-        User user = new User();
-        user.setId(8);
-        user.setName("Timea");
-
-        User user1 = new User();
-        user1.setId(9);
-        user1.setName("Alex");
-
-        User user2 = new User();
-        user2.setId(100);
-        user2.setName("Ana");
-
-        users.add(user);
-        users.add(user1);
-        users.add(user2);
-    }
-
 
     @Override
     public void save(User user) {
@@ -59,10 +39,16 @@ public class UserDaoFake implements UserInterface{
         }
     }
 
-    //todo
+    @Override
     public void update(Integer id, User newUser) {
         for (User user : users) {
             if (user.getId().equals(id)) {
+                user.setName(newUser.getName());
+                user.setEmail(newUser.getEmail());
+                user.setAddress(newUser.getAddress());
+                user.setPhone(newUser.getPhone());
+                user.setShelter(newUser.getShelter());
+                user.setUserType(newUser.getUserType());
             }
         }
     }

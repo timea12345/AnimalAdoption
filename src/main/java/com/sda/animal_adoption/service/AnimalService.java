@@ -1,7 +1,6 @@
 package com.sda.animal_adoption.service;
 
-import com.sda.animal_adoption.dao.AnimalDao;
-import com.sda.animal_adoption.dao.AnimalRepository;
+import com.sda.animal_adoption.dao.animal.AnimalRepository;
 import com.sda.animal_adoption.model.Animal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
