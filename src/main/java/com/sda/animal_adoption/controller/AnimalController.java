@@ -29,6 +29,12 @@ public class AnimalController {
         return animalService.findAll();
     }
 
+    @GetMapping("/findById")
+    @CrossOrigin("*")
+    public Animal findById(@RequestParam(name = "id") Integer id) {
+        return animalService.findById(id);
+    }
+
     @PostMapping("/save")
     @CrossOrigin("*")
     public void saveAnimal(@RequestBody Animal animal) {
@@ -43,7 +49,13 @@ public class AnimalController {
 
     @PostMapping("/addAnimal")
     @CrossOrigin("*")
-    public void submit(@RequestParam(name = "id") Integer id,
+    public void submit(@RequestBody Animal animal) {
+        animalService.saveAnimal(animal);
+    }
+
+    @PostMapping("/update")
+    @CrossOrigin("*")
+    public void update(@RequestParam(name = "id") Integer id,
                        @RequestParam(name = "race") String race,
                        @RequestParam(name = "age") Integer age,
                        @RequestParam(name = "gender") String sex,
@@ -53,6 +65,7 @@ public class AnimalController {
         animal.setAge(age);
         animal.setSex(sex);
         animal.setDescription(description);
+        animalService.update(id, animal);
         animalService.saveAnimal(animal);
     }
 

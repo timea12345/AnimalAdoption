@@ -31,4 +31,19 @@ public class AnimalService {
     public Animal findById(Integer id) {
         return animalRepository.findById(id).orElseThrow(() ->new NullPointerException("animal not found"));
     }
+
+    public void update(Integer id, Animal animal) {
+        animalRepository.findById(id).orElseThrow(
+                () -> new NullPointerException("Animal not found!"))
+                .setRace(animal.getRace());
+        animalRepository.findById(id).orElseThrow(
+                () -> new NullPointerException("Animal not found!"))
+                .setDescription(animal.getDescription());
+        animalRepository.findById(id).orElseThrow(
+                () -> new NullPointerException("Animal not found!"))
+                .setSex(animal.getSex());
+        animalRepository.findById(id).orElseThrow(
+                () -> new NullPointerException("Animal not found!"))
+                .setAge(animal.getAge());
+    }
 }
