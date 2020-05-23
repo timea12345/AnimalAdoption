@@ -17,12 +17,6 @@ public class AnimalController {
         this.animalService = animalService;
     }
 
-    @GetMapping("/sayHi/{hi}")
-    @CrossOrigin("*")
-    public String sayHi(@PathVariable String hi) {
-        return "prefix_" + hi;
-    }
-
     @GetMapping("/findAll")
     @CrossOrigin("*")
     public List<Animal> findAll() {
@@ -53,20 +47,17 @@ public class AnimalController {
         animalService.saveAnimal(animal);
     }
 
-    @PostMapping("/update")
+    @PostMapping("/update/{id}")
     @CrossOrigin("*")
-    public void update(@RequestParam(name = "id") Integer id,
-                       @RequestParam(name = "race") String race,
-                       @RequestParam(name = "age") Integer age,
-                       @RequestParam(name = "gender") String sex,
-                       @RequestParam(name = "description") String description) {
-        Animal animal = new Animal();
-        animal.setRace(race);
-        animal.setAge(age);
-        animal.setSex(sex);
-        animal.setDescription(description);
+    public void update(Integer id, Animal animal) {
         animalService.update(id, animal);
         animalService.saveAnimal(animal);
     }
 
+
+//    @GetMapping("/sayHi/{hi}")
+//    @CrossOrigin("*")
+//    public String sayHi(@PathVariable String hi) {
+//        return "prefix_" + hi;
+//    }
 }
